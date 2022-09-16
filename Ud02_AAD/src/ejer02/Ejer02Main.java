@@ -13,7 +13,7 @@ public class Ejer02Main {
 		Boolean existe = false;
 		File f = new File(ruta);
 		
-		if (f.isDirectory() || f.isFile()) {
+		if (f.exists()) {
 			existe = true;
 		}
 		
