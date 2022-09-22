@@ -24,7 +24,7 @@ public class Ejer05Main {
 	
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
-		ArrayList palabras = new ArrayList<String>();
+		ArrayList<String>palabras = new ArrayList<String>();
 		
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter("Ficheros\\" + args[0] + "_sort.txt"));
@@ -33,8 +33,14 @@ public class Ejer05Main {
 			while((linea = br.readLine())!=null) {
 				palabras.add(linea);
 			}
-			Collections.sort(palabras, String.CASE_INSENSITIVE_ORDER); //https://stackoverflow.com/questions/5815423/sorting-arraylist-in-alphabetical-order-case-insensitive
+			Collections.sort(palabras); //https://stackoverflow.com/questions/5815423/sorting-arraylist-in-alphabetical-order-case-insensitive
 			br.close();
+			
+			for(String palabra : palabras) {
+				bw.write(palabra);
+				bw.newLine();
+			}
+			bw.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
