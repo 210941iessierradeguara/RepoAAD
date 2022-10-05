@@ -40,7 +40,7 @@ public class ConsultaSocio_Sesion2 extends JFrame implements ActionListener {
 
 	public ConsultaSocio_Sesion2() {
 
-		super("B�squeda de socios por localidad");
+		super("Búsqueda de socios por localidad");
 		panel = getContentPane();
 		panel.setLayout(null);
 
@@ -145,6 +145,27 @@ public class ConsultaSocio_Sesion2 extends JFrame implements ActionListener {
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+//				try {
+//					rs = abd3.consulta(buscarT.getText());
+//					rs.last();
+//					ultimo = rs.getRow();
+//					if (ultimo < 1) {
+//						JOptionPane.showMessageDialog(panel, "No existen registros en  " 
+//								+ buscarT.getText(),"error", JOptionPane.INFORMATION_MESSAGE);
+//						anterior.setEnabled(false);
+//						siguiente.setEnabled(false);
+//						socioT.setEditable(true);
+//						nombreT.setEditable(true);
+//						estaturaT.setEditable(true);
+//						edadT.setEditable(true);
+//						localidadT.setEditable(true);
+//					} else {
+//						rs.first();
+//					}
+//				} catch (SQLException e) {
+//					
+//					e.printStackTrace();
+//				}
 			}
 		});
 		btnActualizar.setBounds(311, 110, 89, 23);
