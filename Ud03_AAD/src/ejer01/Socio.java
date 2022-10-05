@@ -9,6 +9,7 @@ public class Socio {
 	
 	public Socio() {
 		super();
+		
 	}
 
 	public Socio(int socioID, String nombre, int estatura, int edad, String localidad) {
