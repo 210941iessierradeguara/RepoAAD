@@ -33,7 +33,7 @@ public class AccesoBd {
 
 	public ResultSet consulta(String localidad) throws SQLException {
 		CallableStatement consulta = null;
-		consulta = conecta.prepareCall("CALL consultaSocio(?)");
+		consulta = conecta.prepareCall("CALL buscaSocios(?)", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		consulta.setString(1, localidad);
 		ResultSet reg = consulta.executeQuery();
 		return reg;
