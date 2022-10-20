@@ -23,11 +23,13 @@ public class AccesoBd {
 	public void conectar() throws SQLException, ClassNotFoundException {
 		Class.forName(driver);
 		conecta = DriverManager.getConnection(url, username, password);
+		conecta.setAutoCommit(false);
 	}
 
 	public void desconectar() throws SQLException {
 		if (conecta != null) {
 			conecta.close();
+			conecta.setAutoCommit(true);
 		}
 	}
 
@@ -56,8 +58,14 @@ public class AccesoBd {
 			inserta.setInt(3, socio.getEdad());
 			inserta.setString(4, socio.getLocalidad());
 			inserta.executeUpdate();
+			conecta.commit();
 			return 1;
 		} catch (SQLException e) {
+			try {
+				conecta.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			return e.getErrorCode();
 		}
 	}
@@ -71,9 +79,16 @@ public class AccesoBd {
 			actualiza.setInt(3, socio.getEdad());
 			actualiza.setString(4, socio.getLocalidad());
 			actualiza.setInt(5, socio.getId());
-			return actualiza.executeUpdate();
+			int vuelta = actualiza.executeUpdate();
+			conecta.commit();
+			return vuelta;
 
 		} catch (SQLException e) {
+			try {
+				conecta.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			return 0;
 		}
 
@@ -84,8 +99,15 @@ public class AccesoBd {
 			String sql = "delete from socio where socioID=?";
 			PreparedStatement borra = conecta.prepareStatement(sql);
 			borra.setInt(1, socio.getId());
-			return borra.executeUpdate();
+			int vuelta = borra.executeUpdate();
+			conecta.commit();
+			return vuelta;
 		} catch (SQLException e) {
+			try {
+				conecta.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			return 0;
 		}
 	}
